@@ -16,7 +16,7 @@ const postSchema = new mongoose.Schema({
         required: true,
         trim: true
     },
-    hashtags:{
+    hashtags: {
         type: String,
         required: true,
         trim: true
@@ -29,9 +29,13 @@ const postSchema = new mongoose.Schema({
     likes: {
         type: Number,
         default: 0
+    },
+    show: {
+        type: Boolean,
+        default: false
     }
-},{
-    timestamps:true// cria os campos create_at e update_at*
+}, {
+    timestamps: true// cria os campos create_at e update_at*
 })
 
 module.exports = mongoose.model('Post', postSchema)
