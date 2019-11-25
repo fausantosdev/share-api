@@ -1,9 +1,9 @@
 {
-  "name": "eita",
+  "name": "eita-be",
   "version": "1.0.0",
-  "description": "Eita",
+  "description": "Backend, Eita!",
   "main": "index.js",
-  "author": "Fall Santos",
+  "author": "Flávio Santos",
   "scripts": {
     "start": "node src/index",
     "dev": "nodemon src/index"

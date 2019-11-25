@@ -1,7 +1,7 @@
 const mongoose = require('mongoose')
 
 mongoose.connect(
-    process.env.MONGO_URL,
+    "mongodb+srv://fallsantosdev:B13b14b14b13*@cluster-0-dev-4cxi0.mongodb.net/omistack07?retryWrites=true&w=majority",
     { useNewUrlParser: true }
 )
 

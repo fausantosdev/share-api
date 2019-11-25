@@ -11,7 +11,7 @@ module.exports = {
         console.log(`Request URL: ${req.originalUrl}`)
         console.log(`Request type: ${req.method}`)
         console.log('---------------------------------')
-            
+
         const posts = await Post.find().sort('-createdAt')// Ordenar por data de criação em ordem decrescente.
 
         res.json(posts)
@@ -26,8 +26,8 @@ module.exports = {
 
         const { author, place, description, hashtags } = req.body
         const { filename: image } = req.file // Pega só o nome do arquivo e altera o nome para "image".
-        
-        const [ name ] = image.split('.')// Divide o nome e a extenção através do ponto.
+
+        const [name] = image.split('.')// Divide o nome e a extenção através do ponto.
         const fileName = `${name}.jpg`// Estes dois trexos fazem as imagens serem salvas em formato jpg.
 
         // Sharp também é assíncrono
@@ -35,17 +35,17 @@ module.exports = {
             .resize(500)// Redimencionamento.
             .jpeg({ quality: 70 })// Formato jpeg e qualidade 70%.
             .toFile(// Exporta para um novo arquivo.
-                 path.resolve(req.file.destination, 'resized', fileName)// O destino da imagem, o novo destino, e a imagem 'que será redimencionada'   
+                path.resolve(req.file.destination, 'resized', fileName)// O destino da imagem, o novo destino, e a imagem 'que será redimencionada'   
             )
-         
+
         fs.unlinkSync(req.file.path)// Apaga a imagem original depois de a ter redimencionado.
 
         const post = await Post.create({
             author,
-            place, 
+            place,
             description,
             hashtags,
-            image: fileName 
+            image: fileName
         })
 
         req.io.emit('post', post)// Emite uma informação para todos os usuários conectados na aplicação
@@ -67,7 +67,7 @@ module.exports = {
         await post.save()
 
         req.io.emit('like', post)
-        
+
         res.json(post)
     }
 }
