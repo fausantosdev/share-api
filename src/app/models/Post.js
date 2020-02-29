@@ -1,5 +1,8 @@
 const mongoose = require('mongoose')
 
+const localhost = 'http://localhost:3001'
+const serverhost = 'https://.herokuapp.com'
+
 const postSchema = new mongoose.Schema({
     author: {
         type: String,
@@ -35,7 +38,14 @@ const postSchema = new mongoose.Schema({
         default: false
     }
 }, {
-    timestamps: true// cria os campos create_at e update_at*
+    timestamps: true,
+    toJSON: {
+        virtuals: true
+    }
 })
 
-module.exports = mongoose.model('Post', postSchema)
+postSchema.virtual('thumbnail_url').get(function () {
+    return `${localhost}/files/${this.image}`
+})
+
+module.exports = mongoose.model('Post', postSchema) 
