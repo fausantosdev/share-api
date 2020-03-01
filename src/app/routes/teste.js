@@ -9,9 +9,9 @@ router.get('/', (req, res) => {
     console.log(`Request URL: ${req.originalUrl}`)
     console.log(`Request type: ${req.method}`)
     console.log('---------------------------------')
-        
+
     res.send({
-        "status": "ok"
+        "json": "ok"
     })
 })
 
