@@ -11,7 +11,7 @@ mongoose.connect(
 let db = mongoose.connection
 db.on('error', console.error.bind(console, 'connection error:'))
 db.once('open', function () {
-    console.info("Database connect successfuly!")
+    console.info("~ database connect successfuly!")
 });
 
 module.exports = db

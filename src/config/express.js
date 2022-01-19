@@ -1,5 +1,3 @@
-require('dotenv').config()
-
 const express = require('express')
 const path = require('path')
 const cors = require('cors')// Permite que o backend seja acessível pelo front em react mesmo estando em domínios diferentes.
@@ -29,24 +27,7 @@ app.use(cors())// Permite que todo tipo de aplicação acesse o backend.
 app.use('/files', express.static(path.resolve(__dirname, '..', '..', 'uploads', 'resized')))// Rota para os arquivos estáticos(imagens) dos posts.
 
 // Routes
-app.use('/', (reqq, res) => {
-  return res.json({
-    "name": "Api para a aplicação Eitagram!",
-    "version": "0.1",
-    "author": [
-      {
-        "name": "Fall Santos",
-        "rule": "Fullstack developer",
-        "email": "fallsantosdev@hotmail.com",
-        "github": "https://github.com/fallsantos",
-        "linkedin": "https://www.linkedin.com/in/fall-santos-23bb87103/"
-      }
-    ]
-  })
-})
 app.use('/posts', postRoute)
 app.use('/posts/:id/like', postRoute)
-
-
 
 module.exports = app
