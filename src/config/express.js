@@ -10,7 +10,14 @@ const app = express()
 
 //--------------------------------------------------'
 const server = require('http').createServer(app)// Permite que a aplicação ouça tanto o protocolo http quanto o websocket
-const io = require('socket.io')(server)// Faz quque a aplicação suporte o protocolo de websockets
+const io = require('socket.io')(server, {
+  cors: {
+    origin: "http://fausantosdev-share-web.herokuapp.com",
+    /*methods: ["GET", "POST"],
+    allowedHeaders: ["my-custom-header"],*/
+    credentials: true
+  }
+})// Faz quque a aplicação suporte o protocolo de websockets
 
 app.use((req, res, next) => {
     req.io = io
