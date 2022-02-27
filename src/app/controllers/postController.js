@@ -15,13 +15,14 @@ module.exports = {
     async store(req, res) {
 
         const { author, place, description, hashtags } = req.body
-        const { filename: image } = req.file // Pega só o nome do arquivo e altera o nome para "image".
 
-        const [name] = image.split('.')// Divide o nome e a extenção através do ponto.
+        const { key } = req.file // Pega só o nome do arquivo e altera o nome para "image".
+
+        /*const [name] = image.split('.')// Divide o nome e a extenção através do ponto.
         const fileName = `${name}.jpg`// Estes dois trexos fazem as imagens serem salvas em formato jpg.
 
-        // Sharp também é assíncrono
-        await sharp(req.file.path)
+        Sharp também é assíncrono
+        /*await sharp(req.file.path)
             .resize(500)// Redimencionamento.
             .jpeg({ quality: 70 })// Formato jpeg e qualidade 70%.
             .toFile(// Exporta para um novo arquivo.
@@ -29,13 +30,13 @@ module.exports = {
             )
 
         fs.unlinkSync(req.file.path)// Apaga a imagem original depois de a ter redimencionado.
-
+        */
         const post = await Post.create({
             author,
             place,
             description,
             hashtags,
-            image: fileName
+            image: key
         })
 
         req.io.emit('post', post)// Emite uma informação para todos os usuários conectados na aplicação
