@@ -1,7 +1,7 @@
 const mongoose = require('mongoose')
 
 const localhost = 'http://localhost:3000'
-const serverhost = 'https://fausantosdev-share-api.herokuapp.com'
+const bucket = process.env.AWS_BUCKET_URL
 
 const postSchema = new mongoose.Schema({
     author: {
@@ -45,7 +45,7 @@ const postSchema = new mongoose.Schema({
 })
 
 postSchema.virtual('thumbnail_url').get(function () {
-    return `${serverhost}/files/${this.image}`
+    return `${bucket}/${this.image}`
 })
 
 module.exports = mongoose.model('Post', postSchema)
