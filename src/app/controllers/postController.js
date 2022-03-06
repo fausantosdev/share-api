@@ -44,6 +44,17 @@ module.exports = {
         return res.json(post)
     },
 
+    async delete(req, res) {
+      const { id: _id } = req.params
+
+      const deleted = await Post.deleteOne({ _id })
+
+      return res.json({
+        'status': true,
+        'deleted': req.params.id
+      })
+    },
+
     async like(req, res) {
 
         const post = await Post.findById(req.params.id)
