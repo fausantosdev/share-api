@@ -14,4 +14,6 @@ router.post('/', upload.single('image'), postController.store)// Create
 
 router.post('/:id/like', postController.like)// Like+
 
+router.delete('/:id/delete', postController.delete)
+
 module.exports = router
