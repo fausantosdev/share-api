@@ -1,10 +1,10 @@
 require('dotenv').config()
 
-const app = require('./config/express')
+const app = require('./app')
 
-const PORT = process.env.PORT
+const PORT = app.get('port')
 
-const server = app.get('server')
+const server =  app.get('server')
 
 server.listen(PORT, () => {
     console.log(`~ server running on port ${PORT}...`)
