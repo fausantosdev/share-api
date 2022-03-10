@@ -22,7 +22,7 @@ class App {
     const server = require('http').createServer(this.server)// Permite que a aplicação ouça tanto o protocolo http quanto o websocket
     const io = require('socket.io')(server, {
       cors: {
-        origin: ["http://localhost:3000","http://fausantosdev-share-web.herokuapp.com"],
+        origin: ["http://localhost:3000","https://fausantosdev-share-web.herokuapp.com"],
         methods: ["GET", "POST"],
         transports: ['websocket', 'polling'],
         autoConnect: true,
