@@ -7,7 +7,7 @@ const { Server } = require('socket.io')
 
 const routes = require('./app/routes/post')
 
-require('./config/mongoose')
+require('./database')
 
 class App {
   constructor() {
